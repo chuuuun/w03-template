@@ -27,6 +27,9 @@ public class CanteenController {
     public ResponseEntity<List<Dish>> getTodayMeals(@PathVariable String canteenName) {
         // TODO: Implement the logic to fetch today's meals for the specified canteen using the CanteenService
         List<Dish> todayMeals = canteenService.getTodayMeals(canteenName);
+        if (todayMeals.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.ok(todayMeals);
     }
 }
